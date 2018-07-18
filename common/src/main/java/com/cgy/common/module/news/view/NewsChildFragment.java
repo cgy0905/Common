@@ -42,7 +42,7 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
     private NewsContract.Presenter presenter;
     private int pageIndex = 0;
     private int type = NewsFragment.ONE;
-    private List<NewsEntity> newsDatas = new ArrayList<>();
+    private List<NewsEntity> newsData = new ArrayList<>();
     private ArrayList<String> images = new ArrayList<>();
 
     public static NewsChildFragment newInstance(int type) {
@@ -76,19 +76,19 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DefaultItemDecoration(getActivity()));
-        adapter = new NewsAdapter(newsDatas, getActivity());
+        adapter = new NewsAdapter(newsData, getActivity());
         adapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, BaseViewHolder viewHolder) {
-                if (newsDatas.get(position).getImgextra() == null) {
-                    NewsEntity entity = newsDatas.get(position);
+                if (newsData.get(position).getImgextra() == null) {
+                    NewsEntity entity = newsData.get(position);
                     Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
                     intent.putExtra("news", entity);
                     startActivity(intent);
                 } else {
                     images.clear();
-                    for (int i = 0; i < newsDatas.get(position).getImgextra().size(); i++) {
-                        images.add(newsDatas.get(position).getImgextra().get(i).getImgsrc());
+                    for (int i = 0; i < newsData.get(position).getImgextra().size(); i++) {
+                        images.add(newsData.get(position).getImgextra().get(i).getImgsrc());
                     }
                     BigImagePagerActivity.startImagePagerActivity(getActivity(), images, 0);
 
@@ -101,7 +101,7 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
             @Override
             public void onLoadMore() {
                 pageIndex += Apis.PAGE_SIZE;
-                if (newsDatas.size() != 0)
+                if (newsData.size() != 0)
                     adapter.setFooterVisible(View.VISIBLE);
                     presenter.loadData(type, pageIndex);
 
@@ -114,7 +114,6 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
         refreshLayout.setRefreshing(true);
         presenter.loadData(type, pageIndex);
     }
-
 
     @Override
     public void onRefresh() {
@@ -161,8 +160,8 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
     public void onDestroy() {
         super.onDestroy();
 
-        newsDatas.clear();
-        newsDatas = null;
+        newsData.clear();
+        newsData = null;
         images.clear();
         images = null;
     }

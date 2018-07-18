@@ -7,7 +7,7 @@ import java.util.List;
  * Created by llf on 2017/4/13.
  */
 
-public class NewsDetialEntity implements Serializable {
+public class NewsDetailEntity implements Serializable {
     /**
      * docid
      */
