@@ -62,7 +62,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, IUi
     @Bind(R.id.img_share)
     ImageView mImgShare;
 
-    private static final int CHANGE_AVATAIR = 1;
+    private static final int CHANGE_AVATAR = 1;
     private MineContract.Presenter mPresenter;
     private Tencent mTencent;
     private IWXAPI iwxapi;
@@ -137,7 +137,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, IUi
                 }
                 break;
             case R.id.avatar:
-                PickPhotoActivity.startActivity(this, new ImgSelConfig.Builder().multiSelect(false).build(), CHANGE_AVATAIR);
+                PickPhotoActivity.startActivity(this, new ImgSelConfig.Builder().multiSelect(false).build(), CHANGE_AVATAR);
                 break;
             case R.id.rbt_msg:
                 break;
@@ -149,7 +149,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, IUi
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CHANGE_AVATAIR && resultCode == Activity.RESULT_OK) {
+        if (requestCode == CHANGE_AVATAR && resultCode == Activity.RESULT_OK) {
             ArrayList<String> result = data.getStringArrayListExtra(PickPhotoActivity.INTENT_RESULT);
             if (result.size() != 0) {
                 ImageLoaderUtils.displayCircle(getActivity(), mAvatar, result.get(0));

@@ -13,7 +13,7 @@ import com.cgy.common.MyApp;
 import com.cgy.common.R;
 import com.cgy.common.WelcomeActivity;
 import com.cgy.common.module.find.view.DiscoveryFragment;
-import com.cgy.common.module.mine.MineFragment;
+import com.cgy.common.module.mine.view.MineFragment;
 import com.cgy.common.module.news.view.NewsFragment;
 import com.cgy.common.module.video.VideoFragment;
 import com.llf.basemodel.base.BaseActivity;
