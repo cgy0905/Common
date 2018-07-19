@@ -44,7 +44,7 @@ public class App extends BaseApplication {
         //1.清理内存中的图片2.清理掉Activity只保留Root Activity
         switch (level) {
             case TRIM_MEMORY_COMPLETE:
-                //表示 App 退出到后台，并且已经处于 LRU List 比较考靠前的位置
+                //表示 App 退出到后台，并且已经处于 LRU List 比较靠前的位置
                 break;
             case TRIM_MEMORY_RUNNING_CRITICAL:
                 //表示 App 正在正常运行，但是系统已经开始根据 LRU List 的缓存规则杀掉了一部分缓存的进程

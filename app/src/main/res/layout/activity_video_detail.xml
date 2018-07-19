@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="看了还看"
-        android:textColor="@color/text_nomal"
+        android:textColor="@color/text_normal"
         android:textSize="14sp"
         />
 

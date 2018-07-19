@@ -2,7 +2,6 @@ package com.cgy.common.module.news.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,7 +27,6 @@ import com.llf.basemodel.utils.LogUtil;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by cgy

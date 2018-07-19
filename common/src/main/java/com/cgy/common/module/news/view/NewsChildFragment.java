@@ -30,6 +30,8 @@ import butterknife.Bind;
 /**
  * Created by cgy
  * 2018/7/18  17:41
+ *
+ * 新闻头条
  */
 public class NewsChildFragment extends BaseFragment implements NewsContract.View, SwipeRefreshLayout.OnRefreshListener{
 
@@ -91,7 +93,6 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
                         images.add(newsData.get(position).getImgextra().get(i).getImgsrc());
                     }
                     BigImagePagerActivity.startImagePagerActivity(getActivity(), images, 0);
-
                 }
             }
         });
@@ -122,16 +123,16 @@ public class NewsChildFragment extends BaseFragment implements NewsContract.View
     }
 
     @Override
-    public void returnData(List<NewsEntity> datas) {
+    public void returnData(List<NewsEntity> data) {
         if (pageIndex == 0) {
             try {
-                adapter.replaceAll(datas);
+                adapter.replaceAll(data);
             } catch (Exception e) {
                 LogUtil.d("数据为null");
             }
             refreshLayout.setRefreshing(false);
         } else {
-            adapter.addAll(datas);
+            adapter.addAll(data);
             adapter.setFooterVisible(View.GONE);
         }
     }

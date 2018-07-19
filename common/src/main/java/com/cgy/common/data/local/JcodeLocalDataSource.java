@@ -1,4 +1,4 @@
-package com.llf.common.data.local;
+package com.cgy.common.data.local;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
+import com.cgy.common.data.JcodeDataSource;
+import com.cgy.common.module.find.model.JcodeEntity;
 import com.llf.basemodel.utils.LogUtil;
-import com.llf.common.data.JcodeDataSource;
-import com.llf.common.entity.JcodeEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,17 +17,17 @@ import static android.R.attr.id;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * Created by llf on 2017/3/22.
+ * Created by cgy
+ * 2018/7/19  15:15
  * 发现数据库操作工具类
  */
-
-public class JcodeLocalDataSource implements JcodeDataSource {
-    private DbHelper mSqliteOpenHelp;
+public class JcodeLocalDataSource implements JcodeDataSource{
+    private DBHelper sqliteOpenHelper;
     private static JcodeLocalDataSource INSTANCE;
 
     private JcodeLocalDataSource(@NonNull Context context) {
         checkNotNull(context);
-        mSqliteOpenHelp = new DbHelper(context);
+        sqliteOpenHelper = new DBHelper(context);
     }
 
     public static JcodeLocalDataSource getInstance(@NonNull Context context) {
@@ -38,7 +38,7 @@ public class JcodeLocalDataSource implements JcodeDataSource {
     }
 
     /**
-     * 增加事务，保证数据的安全性，两步操作有一步不对可以回滚
+     * 增加事务 保证数据的安全性 两步操作有一步不正确可以回滚
      *
      * @param entity
      * @return
@@ -47,8 +47,8 @@ public class JcodeLocalDataSource implements JcodeDataSource {
     public long saveJcode(@NonNull JcodeEntity entity) {
         long rowId = 0;
         checkNotNull(entity);
-        SQLiteDatabase sqLiteDatabase = mSqliteOpenHelp.getWritableDatabase();
-        sqLiteDatabase.beginTransaction();
+        SQLiteDatabase database = sqliteOpenHelper.getWritableDatabase();
+        database.beginTransaction();
         try {
             ContentValues values = new ContentValues();
             values.put("imgUrl", entity.getImgUrl());
@@ -60,43 +60,43 @@ public class JcodeLocalDataSource implements JcodeDataSource {
             values.put("watch", entity.getWatch());
             values.put("comments", entity.getComments());
             values.put("hobby", entity.getLike());
-            rowId = sqLiteDatabase.insert("jcode", "imgUrl", values);
-            sqLiteDatabase.setTransactionSuccessful();
+            rowId = database.insert("jcode", "imgUrl", values);
+            database.setTransactionSuccessful();
         } catch (Exception e) {
             LogUtil.d("插入数据库出错");
         } finally {
-            sqLiteDatabase.endTransaction();
-            sqLiteDatabase.close();
+            database.endTransaction();
+            database.close();
         }
         return rowId;
     }
 
     /**
      * 删除一条记录
-     * 返回值是受影响的行数，-1表示失败
+     * 返回值是受影响的行数 -1表示失败
+     * @param title
+     * @return
      */
-
     @Override
     public int deleteJcode(@NonNull String title) {
         checkNotNull(title);
-        SQLiteDatabase sqLiteDatabase = mSqliteOpenHelp.getWritableDatabase();
-        int deleteResult = sqLiteDatabase.delete("jcode", "title=?", new String[]{title});
-        sqLiteDatabase.close();
+        SQLiteDatabase database = sqliteOpenHelper.getWritableDatabase();
+        int deleteResult = database.delete("jcode", "title=?", new String[]{title});
+        database.close();
         return deleteResult;
     }
 
     @Override
     public void deleteAllJcodes() {
-        SQLiteDatabase db = mSqliteOpenHelp.getWritableDatabase();
+        SQLiteDatabase db = sqliteOpenHelper.getWritableDatabase();
         db.delete("jcode", null, null);
         db.close();
     }
 
-
     @Override
     public void getJcodes(@NonNull LoadJcodesCallback callback) {
-        List<JcodeEntity> datas = new ArrayList<>();
-        SQLiteDatabase readableDatabase = mSqliteOpenHelp.getReadableDatabase();
+        List<JcodeEntity> data = new ArrayList<>();
+        SQLiteDatabase readableDatabase = sqliteOpenHelper.getReadableDatabase();
         Cursor cursor = readableDatabase.rawQuery("select * from jcode", null);
         if (cursor != null && cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
@@ -110,24 +110,24 @@ public class JcodeLocalDataSource implements JcodeDataSource {
                 entity.setWatch(cursor.getString(cursor.getColumnIndex("watch")));
                 entity.setComments(cursor.getString(cursor.getColumnIndex("comments")));
                 entity.setLike(cursor.getString(cursor.getColumnIndex("hobby")));
-                datas.add(entity);
+                data.add(entity);
             }
         }
         if (cursor != null) {
             cursor.close();
         }
         readableDatabase.close();
-        if (datas.isEmpty()) {
+        if (data.isEmpty()) {
             callback.onDataNotAvailable();
         } else {
-            callback.onTasksLoaded(datas);
+            callback.onTasksLoaded(data);
         }
     }
 
     @Override
     public void getJcode(@NonNull String title, @NonNull GetJcodeCallback callback) {
         JcodeEntity entity = null;
-        SQLiteDatabase readableDatabase = mSqliteOpenHelp.getReadableDatabase();
+        SQLiteDatabase readableDatabase = sqliteOpenHelper.getReadableDatabase();
         Cursor cursor = readableDatabase.query("jcode", new String[]{"title", "detailUrl", "content"}, "title=?", new String[]{title}, null, null, null);
         if (cursor != null && cursor.getCount() > 0) {
             if (cursor.moveToNext()) {
@@ -147,14 +147,15 @@ public class JcodeLocalDataSource implements JcodeDataSource {
         } else {
             callback.onDataNotAvailable();
         }
-    }
 
+    }
 
     @Override
     public void refreshJcodes(@NonNull JcodeEntity entity) {
         checkNotNull(entity);
-        SQLiteDatabase sqLiteDatabase = mSqliteOpenHelp.getWritableDatabase();
+        SQLiteDatabase sqLiteDatabase = sqliteOpenHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+
         values.put("imgUrl", entity.getImgUrl());
         values.put("title", entity.getTitle());
         values.put("detailUrl", entity.getDetailUrl());
@@ -164,6 +165,7 @@ public class JcodeLocalDataSource implements JcodeDataSource {
         values.put("watch", entity.getWatch());
         values.put("comments", entity.getComments());
         values.put("hobby", entity.getLike());
+
         sqLiteDatabase.update("jcode", values, "id=?", new String[]{String.valueOf(id)});
         sqLiteDatabase.close();
     }

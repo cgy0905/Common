@@ -103,7 +103,7 @@ public class TrackActivity extends BaseActivity implements SwipeRefreshLayout.On
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DefaultItemDecoration(TrackActivity.this));
         mAdapter = new GirlAdapter(jcodes, this);
-        mAdapter.setOnItemClickLitener(new GirlAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new GirlAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 WebViewActivity.lanuch(TrackActivity.this, HOST + jcodes.get(position).getDetailUrl());

@@ -1,5 +1,6 @@
 package com.cgy.common.module.mine;
 
+import com.cgy.common.R;
 import com.llf.basemodel.base.BaseFragment;
 
 /**
@@ -15,7 +16,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_mine;
     }
 
     @Override

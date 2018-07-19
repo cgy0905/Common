@@ -66,7 +66,7 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     @Override
     public void onBindViewHolder(final BaseViewHolder holder, final int position) {
-        if (!(viewFooter != 0 && position == getItemCount() -1)) {
+        if (!(viewFooter != 0 && position == getItemCount() - 1)) {
             int type = getItemViewType(position);
             if (onItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {

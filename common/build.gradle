@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.cgy.common"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -27,7 +27,7 @@ android {
         xiuqu {
             keyAlias 'common'
             keyPassword '123456'
-            storeFile file('E:/android_project/keystore/common.jks')
+            storeFile file('D:/android_project/keystore/common.jks')
             storePassword '123456'
         }
     }

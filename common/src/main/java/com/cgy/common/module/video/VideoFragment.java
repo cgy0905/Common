@@ -1,5 +1,6 @@
 package com.cgy.common.module.video;
 
+import com.cgy.common.R;
 import com.llf.basemodel.base.BaseFragment;
 
 /**
@@ -16,7 +17,7 @@ public class VideoFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.fragment_video;
     }
 
     @Override

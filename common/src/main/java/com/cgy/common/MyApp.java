@@ -13,6 +13,7 @@ import com.llf.basemodel.utils.AppInfoUtil;
  * 2018/7/18  15:32
  */
 public class MyApp extends BaseApplication {
+
     //用于判断应用是否被强杀
     public static int appStatus = -1;
 

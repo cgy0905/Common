@@ -1,4 +1,4 @@
-package com.llf.common.ui.girl.adapter;
+package com.cgy.common.module.find.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,35 +8,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.cgy.common.R;
+import com.cgy.common.module.find.model.JcodeEntity;
 import com.llf.basemodel.commonactivity.WebViewActivity;
 import com.llf.basemodel.commonwidget.CircleImageView;
 import com.llf.basemodel.recycleview.BaseViewHolder;
 import com.llf.basemodel.utils.ImageLoaderUtils;
-import com.llf.common.R;
-import com.llf.common.entity.JcodeEntity;
 
 import java.util.List;
 
 /**
- * Created by llf on 2017/4/19.
- * 发现的适配器，分为两种样式
+ * Created by cgy
+ * 2018/7/19  14:19
  */
-
-public class GirlAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+public class DiscoveryAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int TYPE_FOOTER = 0;
-    private static final int ITEM_NOIMAGE = 1;
+    private static final int ITEM_NOIMAGE  = 1;
     private static final int ITEM_HASIMAGE = 2;
 
     private List<JcodeEntity> data;
-    private Context mContext;
+    private Context context;
     private int viewFooter;
     private View footerView;
-    private OnItemClickListener mOnItemClickListener;
     private static final String HOST = "http://www.jcodecraeer.com";
 
-    public GirlAdapter(List<JcodeEntity> data, Context context) {
+    public DiscoveryAdapter(List<JcodeEntity> data, Context context) {
         this.data = data;
-        this.mContext = context;
+        this.context = context;
     }
 
     public void replaceAll(List<JcodeEntity> elements) {
@@ -51,14 +49,15 @@ public class GirlAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         data.addAll(elements);
         notifyDataSetChanged();
     }
+
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == ITEM_NOIMAGE) {
-            return new BaseViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_jcode_no_image, parent, false));
+            return new BaseViewHolder(LayoutInflater.from(context).inflate(R.layout.item_jcode_no_image, parent, false));
         } else if (viewType == ITEM_HASIMAGE) {
-            return new BaseViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_jcode_has_image, parent, false));
+            return new BaseViewHolder(LayoutInflater.from(context).inflate(R.layout.item_jcode_has_image, parent, false));
         } else {
-            footerView = LayoutInflater.from(mContext).inflate(viewFooter, parent, false);
+            footerView = LayoutInflater.from(context).inflate(viewFooter, parent, false);
             return new BaseViewHolder(footerView);
         }
     }
@@ -66,35 +65,33 @@ public class GirlAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     @Override
     public void onBindViewHolder(BaseViewHolder holder, final int position) {
         if (!(viewFooter != 0 && position == getItemCount() - 1)) {
-            if (mOnItemClickListener != null) {
+            if (onItemClickListener != null) {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        mOnItemClickListener.onItemClick(position);
+                        onItemClickListener.onItemClick(position);
                     }
                 });
             }
-
             int type = getItemViewType(position);
             final JcodeEntity item = data.get(position);
             if (type == ITEM_HASIMAGE) {
-                ImageLoaderUtils.loadingImg(mContext, (ImageView) holder.getView(R.id.cover), HOST + item.getImgUrl());
+                ImageLoaderUtils.loadingImg(context, (ImageView) holder.getView(R.id.iv_cover), HOST + item.getImgUrl());
             }
-            CircleImageView avatar = holder.getView(R.id.avatar);
-            holder.setText(R.id.title, item.getTitle());
-            holder.setText(R.id.content, item.getContent());
-            holder.setText(R.id.author, item.getAuthor());
-            holder.setText(R.id.seeNum, item.getWatch());
-            holder.setText(R.id.commentNum, item.getComments());
-            holder.setText(R.id.loveNum, item.getLike());
-            ImageLoaderUtils.loadingImg(mContext, avatar, HOST + item.getAuthorImg());
+            CircleImageView avatar = holder.getView(R.id.cir_avatar);
+            holder.setText(R.id.tv_title, item.getTitle());
+            holder.setText(R.id.tv_content, item.getContent());
+            holder.setText(R.id.tv_author, item.getAuthor());
+            holder.setText(R.id.tv_seeNum, item.getWatch());
+            holder.setText(R.id.tv_commentNum, item.getComments());
+            holder.setText(R.id.tv_loveNum, item.getLike());
+            ImageLoaderUtils.loadingImg(context, avatar, HOST + item.getAuthorImg());
             avatar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    WebViewActivity.lanuch(mContext, HOST + "/member/index.php?uid" + item.getAuthor());
+                    WebViewActivity.lanuch(context, HOST + "/member/index.php?uid" + item.getAuthor());
                 }
             });
-
         }
     }
 
@@ -131,11 +128,13 @@ public class GirlAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         footerView.setVisibility(visible);
     }
 
-    //设置点击事件
-    public void setOnItemClickListener(OnItemClickListener mListener) {
-        mOnItemClickListener = mListener;
-    }
 
+    private OnItemClickListener onItemClickListener;
+
+    //设置点击事件
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
     public interface OnItemClickListener {
         void onItemClick(int position);
     }

@@ -140,8 +140,8 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     //设置点击事件
-    public void setOnItemClickLitener(OnItemClickListener mLitener) {
-        mOnItemClickListener = mLitener;
+    public void setOnItemClickListener(OnItemClickListener mListener) {
+        mOnItemClickListener = mListener;
     }
 
     public interface OnItemClickListener {

@@ -1,125 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tool="http://schemas.android.com/tools"
     android:background="?attr/selectableItemBackground"
     android:orientation="vertical"
-    android:padding="8dp"
-    >
+    android:padding="8dp">
 
     <ImageView
-        android:id="@+id/cover"
+        android:id="@+id/iv_cover"
         android:layout_width="120dp"
         android:layout_height="64dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        tools:src="@drawable/ic_image_loading"
-        />
+        tool:src="@drawable/ic_image_loading"/>
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/cover"
-        android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@id/cover"
+        android:layout_alignTop="@+id/iv_cover"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/iv_cover"
         android:maxLines="3"
         android:textColor="#333333"
         android:textSize="16sp"
         android:textStyle="bold"
-        tools:text="标题"
-        />
+        tool:text="标题"/>
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cover"
-        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/iv_cover"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:textColor="#666666"
         android:textSize="14sp"
-        tools:text="内容"
-        />
+        tool:text="内容"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tv_content"
         android:layout_marginTop="12dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <com.llf.basemodel.commonwidget.CircleImageView
-            android:id="@+id/avatar"
+            android:id="@+id/cir_avatar"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:descendantFocusability="beforeDescendants"
-            tools:src="@drawable/ic_image_loading"
-            />
+            tool:src="@drawable/ic_image_loading"/>
 
         <TextView
-            android:id="@+id/author"
+            android:id="@+id/tv_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#333333"
             android:textSize="15sp"
-            tools:text="作者"
-            />
+            tool:text="作者"/>
 
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="6dp"
-            android:src="@drawable/ic_girl_see"
-            />
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_girl_see"/>
 
         <TextView
-            android:id="@+id/seeNum"
+            android:id="@+id/tv_seeNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#666666"
             android:textSize="15sp"
-            tools:text="255"
-            />
+            tool:text="255"/>
 
         <ImageView
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="6dp"
-            android:src="@drawable/ic_girl_comment"
-            />
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_girl_comment"/>
 
         <TextView
-            android:id="@+id/commentNum"
+            android:id="@+id/tv_commentNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#666666"
             android:textSize="15sp"
-            tools:text="0"
-            />
+            tool:text="0"/>
 
         <ImageView
+
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="6dp"
-            android:src="@drawable/ic_girl_love"
-            />
-
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_girl_love"/>
         <TextView
-            android:id="@+id/loveNum"
+            android:id="@+id/tv_loveNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#666666"
             android:textSize="15sp"
-            tools:text="0" />
+            tool:text="0"/>
+
+
     </LinearLayout>
+
 </RelativeLayout>

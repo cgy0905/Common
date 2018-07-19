@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            //仅当activity为task根才生效
+            //仅当activity为task时才生效
             moveTaskToBack(true);
             return true;
         }
@@ -224,21 +224,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
     @Override
-    public void showLoading() {
-        startProgressDialog();
-    }
-
-    @Override
-    public void stopLoading() {
-        stopProgressDialog();
-    }
-
-    @Override
-    public void showErrorTip(String msg) {
-        showErrorHint(msg);
-    }
-
-    @Override
     public void returnResult(String result) {
         showToast(result);
     }
@@ -263,5 +248,20 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         } catch (Exception e) {
             LogUtil.d(TAG + "数字转化出错");
         }
+    }
+
+    @Override
+    public void showLoading() {
+        startProgressDialog();
+    }
+
+    @Override
+    public void stopLoading() {
+        stopProgressDialog();
+    }
+
+    @Override
+    public void showErrorTip(String msg) {
+        showErrorHint(msg);
     }
 }

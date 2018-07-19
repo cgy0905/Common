@@ -79,7 +79,7 @@ public class NewsClassfiFragment extends BaseFragment implements NewsContract.Vi
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DefaultItemDecoration(getActivity()));
         mAdapter = new NewsAdapter(newDatas, getActivity());
-        mAdapter.setOnItemClickLitener(new NewsAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new NewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position, BaseViewHolder viewHolder) {
                 if (newDatas.get(position).getImgextra() == null) {
@@ -102,7 +102,7 @@ public class NewsClassfiFragment extends BaseFragment implements NewsContract.Vi
         mRecyclerView.addOnScrollListener(new EndLessOnScrollListener(manager) {
             @Override
             public void onLoadMore() {
-                pageIndex += Apis.PAZE_SIZE;
+                pageIndex += Apis.PAGE_SIZE;
                 if (newDatas.size() != 0)
                     mAdapter.setFooterVisible(View.VISIBLE);
                 mPresenter.loadData(type, pageIndex);

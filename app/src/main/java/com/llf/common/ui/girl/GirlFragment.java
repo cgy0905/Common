@@ -65,7 +65,7 @@ public class GirlFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.addItemDecoration(new DefaultItemDecoration(getActivity()));
         mAdapter = new GirlAdapter(jcodes, getActivity());
-        mAdapter.setOnItemClickLitener(new GirlAdapter.OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new GirlAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 mPresenter.addRecord(getActivity(), jcodes.get(position));

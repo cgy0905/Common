@@ -3,7 +3,6 @@ package com.cgy.common.module.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.PersistableBundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.KeyEvent;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import com.cgy.common.MyApp;
 import com.cgy.common.R;
 import com.cgy.common.WelcomeActivity;
-import com.cgy.common.module.girl.GirlFragment;
+import com.cgy.common.module.find.view.DiscoveryFragment;
 import com.cgy.common.module.mine.MineFragment;
 import com.cgy.common.module.news.view.NewsFragment;
 import com.cgy.common.module.video.VideoFragment;
@@ -94,7 +93,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         fragments = new BaseFragment[titles.length];
         fragments[0] = NewsFragment.getInstance();
         fragments[1] = VideoFragment.getInstance();
-        fragments[2] = GirlFragment.getInstance();
+        fragments[2] = DiscoveryFragment.getInstance();
         fragments[3] = MineFragment.getInstance();
         BaseFragmentAdapter adapter = new BaseFragmentAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
@@ -107,13 +106,12 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
      * 存储瞬间的UI状态
      *
      * @param outState
-     * @param outPersistentState
      */
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-        //奔溃前保存位置 方法执行在onStop
+    public void onSaveInstanceState(Bundle outState) {
+        //奔溃前保存位置 方法执行在onStop之前
         outState.putInt(CURRENT_TAB_POSITION, currentTabPosition);
-        super.onSaveInstanceState(outState, outPersistentState);
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -135,7 +133,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            //仅当activity为task根才生效
+            //仅当activity为task时才生效
             moveTaskToBack(true);
             return true;
         }
