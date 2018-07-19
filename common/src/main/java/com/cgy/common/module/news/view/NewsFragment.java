@@ -32,7 +32,7 @@ public class NewsFragment extends BaseFragment implements ViewPager.OnPageChange
     @Bind(R.id.viewPager)
     ViewPager viewPager;
 
-    private String[] titles = getResources().getStringArray(R.array.childTitles);
+    private String[] titles = {"头条","NBA", "汽车", "笑话"};
     private BaseFragment[] fragments;
     private BaseFragmentAdapter adapter;
     private int currentPosition = 0;

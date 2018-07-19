@@ -5,7 +5,7 @@ android {
         xiuqu {
             keyAlias 'common'
             keyPassword '123456'
-            storeFile file('D:/android_project/keystore/common.jks')
+            storeFile file('E:/android_project/keystore/common.jks')
             storePassword '123456'
         }
     }

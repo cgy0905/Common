@@ -17,6 +17,7 @@
         android:background="@drawable/row_ripple">
 
         <ImageView
+            android:id="@+id/iv_news"
             android:layout_width="86dp"
             android:layout_height="60dp"
             android:scaleType="centerCrop"
