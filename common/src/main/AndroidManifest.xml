@@ -74,6 +74,27 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoStatusBar"/>
+        <activity android:name=".wxapi.WXEntryActivity" />
+
+        <!--QQ声明的Activity-->
+        <activity android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="tencent101393961" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".module.mine.view.SettingActivity" />
+        <activity android:name=".module.mine.view.AttentionActivity" />
+        <activity android:name=".module.mine.view.TrackActivity" />
     </application>
 
 </manifest>

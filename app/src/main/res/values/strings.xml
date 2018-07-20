@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">秀趣</string>
+    <string name="app_name">头条新闻</string>
     <string name="welcome">Welcome%s来到这里</string>
 
     <string-array name="main_titles">
