@@ -133,6 +133,7 @@ public class VideoFragment extends BaseFragment implements SwipeRefreshLayout.On
         mRefreshLayout.setRefreshing(false);
     }
 
+
     @Override
     public void returnData(List<VideoEntity.V9LG4CHORBean> datas) {
         if (pageIndex == 0) {

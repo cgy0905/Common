@@ -41,6 +41,34 @@
             android:name="BUGLY_ENABLE_DEBUG"
             android:value="true"/>
 
+        <!--下载完成后自动安装-->
+        <receiver android:name=".receiver.InstallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </receiver>
+
+        <!--安装完成删除安装包-->
+        <receiver android:name=".receiver.InitApkBroadCastReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+            </intent-filter>
+
+        </receiver>
+
+        <service android:name=".service.UploadImgService"
+            android:priority="1000">
+
+            <intent-filter>
+                <action android:name="com.cgy.xiuqu.intentservice.action.UPLOAD_IMAGE"/>
+            </intent-filter>
+
+        </service>
+
+
         <!-- 解决7.0隐私权限 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -95,6 +123,7 @@
         <activity android:name=".module.mine.view.SettingActivity" />
         <activity android:name=".module.mine.view.AttentionActivity" />
         <activity android:name=".module.mine.view.TrackActivity" />
+        <activity android:name=".module.video.view.VideoDetailActivity" />
     </application>
 
 </manifest>

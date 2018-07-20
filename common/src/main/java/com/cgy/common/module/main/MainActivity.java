@@ -15,7 +15,7 @@ import com.cgy.common.WelcomeActivity;
 import com.cgy.common.module.find.view.DiscoveryFragment;
 import com.cgy.common.module.mine.view.MineFragment;
 import com.cgy.common.module.news.view.NewsFragment;
-import com.cgy.common.module.video.VideoFragment;
+import com.cgy.common.module.video.view.VideoFragment;
 import com.llf.basemodel.base.BaseActivity;
 import com.llf.basemodel.base.BaseFragment;
 import com.llf.basemodel.base.BaseFragmentAdapter;

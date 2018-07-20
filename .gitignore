@@ -7,23 +7,14 @@
 /build
 /captures
 .externalNativeBuild
-.idea
+.idea/
 
-
-.idea/caches/
-.idea/codeStyles/
-.idea/encodings.xml
-.idea/gradle.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/runConfigurations.xml
 app/src/androidTest/
 app/src/test/
 basemodel/src/androidTest/
 basemodel/src/test/
 common/src/androidTest/
-common/src/main/java/com/cgy/common/receiver/
-common/src/main/java/com/cgy/common/service/
+common/src/test/
 photopicker/src/androidTest/
 photopicker/src/test/
 screenshot/
