@@ -56,13 +56,13 @@ public class OkHttpUtils {
 
     private void getRequest(String url, final ResultCallback callback) {
         Request.Builder builder = new Request.Builder().url(url)
-                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
-        //builder.addHeader("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4)");
-                .addHeader("Accept", "text/html")
-                .addHeader("Accept", "application/xhtml+xml")
-                .addHeader("Accept-Encoding", "gzip, deflate")
-                .addHeader("Accept-Language", "zh-CN")
-                .addHeader("Connection", "keep-alive");
+//                .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36")
+                .header("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:0.9.4)");
+//                .addHeader("Content-Type", "text/html;charset=UTF-8")
+//                .addHeader("Accept", "*/*")
+//                .addHeader("Accept-Encoding", "gzip, deflate")
+//                .addHeader("Accept-Language", "zh-CN")
+//                .addHeader("Connection", "keep-alive");
 
         Request request = builder.build();
         deliveryResult(callback, request);

@@ -94,15 +94,53 @@
         </activity>
 
 
-        <activity android:name=".module.main.MainActivity"
+        <activity
+            android:name=".module.main.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".module.news.view.NewsDetailActivity"
+        <activity
+            android:name=".module.news.view.NewsDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoStatusBar"/>
-        <activity android:name=".wxapi.WXEntryActivity" />
+
+        <activity
+            android:name=".module.mine.view.SettingActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.video.view.VideoDetailActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.mine.view.TrackActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".module.mine.view.AttentionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransparentWindow"/>
+
+        <activity
+            android:name=".module.video.view.YouTuBeActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboardHidden|keyboard"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/VideoDetailTheme" />
+
+        <activity
+            android:name="com.llf.basemodel.image.BigImagePagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BigImageTheme" />
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.TransparentWindow"/>
+
 
         <!--QQ声明的Activity-->
         <activity android:name="com.tencent.connect.common.AssistActivity"
@@ -120,10 +158,10 @@
                 <data android:scheme="tencent101393961" />
             </intent-filter>
         </activity>
-        <activity android:name=".module.mine.view.SettingActivity" />
-        <activity android:name=".module.mine.view.AttentionActivity" />
-        <activity android:name=".module.mine.view.TrackActivity" />
-        <activity android:name=".module.video.view.VideoDetailActivity" />
+
+
+
+
     </application>
 
 </manifest>
